@@ -7,7 +7,7 @@ host_name = '10.0.2.15'  # IP Address of Raspberry Pi
 host_port = 8000
 
 pygame.init()
-screen = pygame.display.set_mode((700, 500))
+screen = pygame.display.set_mode((1920, 1080))
 font = pygame.font.SysFont("Arial", 20)
 clock = pygame.time.Clock()
 
@@ -39,38 +39,50 @@ class MyServer(BaseHTTPRequestHandler):
             <head>
                 <title>IT-DØR</title>
             </head>
-           <body 
+           <body
             style="width:960px; margin: 20px auto;">
            <h1>IT-KONTOR STATUS</h1>
            <form action="/" method="POST">
-               Status: 
+               Status:
                <input type="submit" name="submit" value="LEDIG">
-               <input type="submit" name="submit" value="OPPTATT">
+               <input type="submit" name="submit" value="MØTE">
+               <input type="submit" name="submit" value="ANNET OPPDRAG">
            </form>
            </body>
            </html>
         '''
         self.do_HEAD()
-        self.wfile.write(html.format().encode("utf-8"))
+        self.wfile.write(html.format().encode("iso-8859-1"))
 
     def do_POST(self):
 
         content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length).decode("utf-8")
+        post_data = self.rfile.read(content_length).decode("iso-8859-1")
         post_data = post_data.split("=")[1]
 
         if post_data == 'LEDIG':
-            screen.fill(blue)
-            pygame.display.update()
-        if post_data == 'OPPTATT':
-            screen.fill(red)
-            pygame.display.update()
+            ledig()
+        if post_data == 'MØTE':
+            mote()
+        if post_data == 'ANNET OPPDRAG':
+            annet_oppdrag()
         else:
             pygame.display.update()
 
         print("Status: {}".format(post_data))
         self._redirect('/')  # Redirect back to the root url
 
+def ledig():
+    screen.fill(red)
+    pygame.display.update()
+
+def mote():
+    screen.fill(red)
+    pygame.display.update()
+
+def annet_oppdrag():
+    screen.fill(red)
+    pygame.display.update()
 
 # # # # # Main # # # # #
 
