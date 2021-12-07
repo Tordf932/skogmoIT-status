@@ -1,0 +1,53 @@
+body {
+    background-image: url("assets/bg.png");
+	background-repeat: no-repeat;
+    background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #276eca;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .button:hover {background-color: #39a4d6}
+  
+  .button:active {
+    background-color: #4e98d4;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
