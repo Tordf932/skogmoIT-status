@@ -58,12 +58,12 @@ class MyServer(BaseHTTPRequestHandler):
         with open("index.html", "r") as html:
             string = html.read()
         self.do_HEAD()
-        self.wfile.write(string.encode("iso-8859-1"))
+        self.wfile.write(string.format().encode("iso-8859-1"))
 
     def do_POST(self):
 
         content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length)
+        post_data = self.rfile.read(content_length).decode("iso-8859-1")
         post_data = post_data.split("=")[1]
 
         if post_data == 'ledig':
