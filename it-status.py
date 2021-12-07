@@ -43,11 +43,6 @@ pygame.display.update()
 
 class MyServer(BaseHTTPRequestHandler):
 
-    def do_HEAD(self):
-        self.send_response(200)
-        self.send_header('Content-type', 'text/html')
-        self.end_headers()
-
     def _redirect(self, path):
         self.send_response(303)
         self.send_header('Content-type', 'text/html')
@@ -55,13 +50,25 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        with open("index.html", "r") as html:
-            string = html.read()
-        self.do_HEAD()
-        self.wfile.write(string.format().encode("iso-8859-1"))
+        if self.path == '/':
+            self.path = '/index.html'
+        try:
+            split_path = os.path.splitext(self.path)
+            request_extension = split_path[1]
+            if request_extension != ".py":
+                f = open(self.path[1:]).read()
+                self.send_response(200)
+                self.end_headers()
+                self.wfile.write(bytes(f, 'iso-8859-1'))
+            else:
+                f = "File not found"
+                self.send_error(404,f)
+        except:
+            f = "File not found"
+            self.send_error(404,f)
+        
 
     def do_POST(self):
-
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length).decode("iso-8859-1")
         post_data = post_data.split("=")[1]
@@ -76,6 +83,7 @@ class MyServer(BaseHTTPRequestHandler):
             pygame.display.update()
 
         print("Status: {}".format(post_data))
+        
         self._redirect('/')  # Redirect back to the root url
 
 def ledig():
