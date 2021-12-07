@@ -1,23 +1,17 @@
 <!DOCTYPE html>
-<html lang="nb">
-<meta charset="UTF-8">
 <html>
-
-    <head>
-        <title>IT-DØR</title>
-        <link rel='stylesheet' type='text/css' href='style.css' />
-    </head>
-
-    <body>
-    <div class="content">
-        <h1>IT-KONTOR STATUS</h1>
-        <form action="/" method="POST">
-        <button class="button" onclick="getElementById('demo').innerHTML=('STATUS ER NÅ LEDIG')" type="submit" name="submit" value="ledig">LEDIG</button>
-        <button class="button" onclick="getElementById('demo').innerHTML=('STATUS ER NÅ MØTE')" value="mote">MØTE</button>
-        <button class="button" onclick="getElementById('demo').innerHTML=('STATUS ER NÅ ANNET OPPDRAG')" value="annet">ANNET OPPDRAG</button>
-        </form>
-        <p id="demo"></p>
-    </div>
-    </body>
-
+	<head>
+		<title>IT-DØR</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+	<div class="content">
+	<h1>IT-KONTOR STATUS</h1>
+	<form action="/" method="POST">
+		<button class="button" type="submit" name="submit" value="ledig">LEDIG</button>
+		<button class="button" type="submit" name="submit" value="mote">MØTE</button>
+		<button class="button" type="submit" name="submit" value="annet">ANNET OPPDRAG</button>
+	</form>
+	</div>
+	</body>
 </html>
