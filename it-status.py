@@ -6,11 +6,11 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 pygame.init()
 pygame.font.init()
 
-host_name = '10.0.2.15'  # IP Address of Raspberry Pi
-host_port = 8000
+host_name = '192.168.1.232'  # IP Address of Raspberry Pi
+host_port = 80
 sw = 1920
 sh = 1080
-screen = pygame.display.set_mode((sw, sh))
+screen = pygame.display.set_mode((sw, sh))#pygame.FULLSCREEN
 clock = pygame.time.Clock()
 bg = pygame.image.load("assets/bg.png")
 font1 = pygame.font.SysFont("None", 200)
@@ -55,30 +55,15 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        html = '''
-           <html>
-            <head>
-                <title>IT-DØR</title>
-            </head>
-           <body
-            style="width:960px; margin: 20px auto;">
-           <h1>IT-KONTOR STATUS</h1>
-           <form action="/" method="POST">
-               Status:
-		<button type="submit" name="submit" value="ledig">LEDIG</button>
-		<button type="submit" name="submit" value="mote">MØTE</button>
-		<button type="submit" name="submit" value="annet">ANNET OPPDRAG</button>
-           </form>
-           </body>
-           </html>
-        '''
+        with open("index.html", "r") as html:
+            string = html.read()
         self.do_HEAD()
-        self.wfile.write(html.format().encode("iso-8859-1"))
+        self.wfile.write(string.encode("iso-8859-1"))
 
     def do_POST(self):
 
         content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length).decode("iso-8859-1")
+        post_data = self.rfile.read(content_length)
         post_data = post_data.split("=")[1]
 
         if post_data == 'ledig':
