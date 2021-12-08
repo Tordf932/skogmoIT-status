@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-
 import os, pygame, codecs
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 pygame.init()
 pygame.font.init()
 
-host_name = '192.168.1.232'  # IP Address of Raspberry Pi
+host_name = '192.168.1.88'  # IP Address of Raspberry Pi
 host_port = 80
 sw = 1920
 sh = 1080
@@ -39,8 +38,6 @@ black = [0, 0, 0]
 
 screen.fill(white)
 pygame.display.update()
-
-
 class MyServer(BaseHTTPRequestHandler):
 
     def _redirect(self, path):
@@ -66,7 +63,6 @@ class MyServer(BaseHTTPRequestHandler):
         except:
             f = "File not found"
             self.send_error(404,f)
-        
 
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
