@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, pygame, codecs
+import os, pygame, codecs, keyboard
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 pygame.init()
@@ -38,6 +38,7 @@ black = [0, 0, 0]
 
 screen.fill(white)
 pygame.display.update()
+
 class MyServer(BaseHTTPRequestHandler):
 
     def _redirect(self, path):
@@ -92,6 +93,7 @@ def mote():
     screen.blit(bg, (0,0))
     screen.blit(text_mote, text_rect2)
     screen.blit(text_mote2, text_rect22)
+    draw_borders(10, 10, sw-20, sh-20)
     pygame.display.update()
 
 def annet_oppdrag():
@@ -99,6 +101,12 @@ def annet_oppdrag():
     screen.blit(text_annet, text_rect3)
     screen.blit(text_annet2, text_rect32)
     pygame.display.update()
+
+def draw_borders(s, x, y, w, h, bw, c):
+    pygame.draw.rect(s, c, (x, y, w, bw))
+    pygame.draw.rect(s, c, (x, y+h-bw, w, bw))
+    pygame.draw.rect(s, c, (x, y, bw, h))
+    pygame.draw.rect(s, c, (x+w-bw, y, bw, h))
 
 # # # # # Main # # # # #
 
