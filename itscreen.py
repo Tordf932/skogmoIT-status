@@ -1,4 +1,5 @@
-import pygame
+import pygame, sys
+from webserver import webstop
 
 pygame.init()
 pygame.font.init()
@@ -6,7 +7,7 @@ pygame.font.init()
 sw = 1920
 sh = 1080
 
-screen = pygame.display.set_mode((sw, sh), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((sw, sh))
 clock = pygame.time.Clock()
 
 bg = pygame.image.load("assets/bg.png")
@@ -55,3 +56,17 @@ def annet_oppdrag():
     color = (255,255,0)
     pygame.draw.rect(screen, color, pygame.Rect(0,0,sw,sh), 100)
     pygame.display.update()
+
+def run():
+    done = False 
+    while not done:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                done = True
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    done = True
+                    pygame.quit()
+                    webstop()
+                    break
+            pygame.display.flip()
