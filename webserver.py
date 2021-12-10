@@ -2,7 +2,7 @@
 import os, codecs, itscreen
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-host_name = '192.168.1.232'  # IP Address of Raspberry Pi
+host_name = '192.168.1.88'  # IP Address of Raspberry Pi
 host_port = 80
 
 class MyServer(BaseHTTPRequestHandler):
@@ -43,7 +43,7 @@ class MyServer(BaseHTTPRequestHandler):
         if post_data == 'annet':
             itscreen.annet_oppdrag()
         else:
-            itscreen.pygame.display.update()
+            return
 
         print("Status: {}".format(post_data))
         
