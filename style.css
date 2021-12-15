@@ -7,6 +7,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 45px;
 }
 
 .content {
@@ -14,17 +15,25 @@ h1 {
     position: absolute;
     top: 45%;
     left: 50%;
+    margin-right: -50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
-.button {
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
     display: inline-block;
     margin-top: 20px;
     margin-left: 5px;
-    padding: 15px 25px;
-    font-size: 24px;
+    padding: 18px 28px;
+    font-size: 35px;
     font-family: "Lucida Console", "Courier New", monospace;
     cursor: pointer;
     text-align: center;
@@ -37,14 +46,25 @@ h1 {
     box-shadow: 0 9px #999;
   }
   
-  .button:hover {background-color: #41719b}
+  button:hover {background-color: #41719b}
   
-  .button:active {
+  button:active {
     background-color: rgb(189, 216, 238);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
 
+.button_ledig_active {
+    background-color: #2BFF00;
+}
+
+.button_mote_active {
+    background-color: #FF0000;
+}
+
+.button_annet_active {
+    background-color: #FFFB00;
+}
 
 .area{
     background: #f5fbff;  
