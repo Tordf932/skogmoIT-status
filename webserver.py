@@ -87,7 +87,21 @@ http_server = HTTPServer((host_name, host_port), MyServer)
 
 def webstart():
     print("Server Starts - %s:%s" % (host_name, host_port))
-
+    soup = bs(open("index.html"), "html.parser")
+    first_start = True
+    if first_start:
+        search =soup.find('button', class_='button_ledig_active')
+        if search != None:
+            search['class'] = 'button_ledig'
+        search2 =soup.find('button', class_='button_mote_active')
+        if search2 != None:
+            search2['class'] = 'button_mote'
+        search3 =soup.find('button', class_='button_annet_active')
+        if search3 != None:
+            search3['class'] = 'button_annet'
+        with open("index.html", "w") as outf:
+            outf.write(str(soup))
+        first_start = False
     try:
         http_server.serve_forever()
     except KeyboardInterrupt:

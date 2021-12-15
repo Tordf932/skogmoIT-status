@@ -3,11 +3,12 @@ from webserver import webstop
 
 pygame.init()
 pygame.font.init()
+pygame.mouse.set_visible(False)
 
 sw = 1920
 sh = 1080
 
-screen = pygame.display.set_mode((sw, sh) pygame.FULLSCREEN)
+screen = pygame.display.set_mode((sw, sh), pygame.FULLSCREEN)
 clock = pygame.time.Clock()
 
 bg = pygame.image.load("assets/bg.png")

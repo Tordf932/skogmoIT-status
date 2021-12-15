@@ -18,7 +18,7 @@ h1 {
     margin-right: -50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    font-family: "Lucida Console", "Courier New", monospace;
+    font-family: "Lucida Console", monospace;
 }
 
 .center {
@@ -31,10 +31,10 @@ h1 {
 button {
     display: inline-block;
     margin-top: 20px;
-    margin-left: 5px;
+    margin-left: 10px;
     padding: 18px 28px;
     font-size: 35px;
-    font-family: "Lucida Console", "Courier New", monospace;
+    font-family: "Lucida Console", monospace;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -57,14 +57,19 @@ button {
 .button_ledig_active {
     background-color: #2BFF00;
 }
+.button_ledig_active:hover {background-color: #3FCC22}
 
 .button_mote_active {
     background-color: #FF0000;
 }
+.button_mote_active:hover {background-color: #C22B2B}
 
 .button_annet_active {
     background-color: #FFFB00;
+    text-shadow: -1px 0 1px black, 0 1px 1px black, 1px 0 1px black, 0 -1px 1px black;
 }
+
+.button_annet_active:hover {background-color: #CCC925}
 
 .area{
     background: #f5fbff;  
