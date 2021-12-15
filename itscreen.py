@@ -7,7 +7,7 @@ pygame.font.init()
 sw = 1920
 sh = 1080
 
-screen = pygame.display.set_mode((sw, sh))
+screen = pygame.display.set_mode((sw, sh) pygame.FULLSCREEN)
 clock = pygame.time.Clock()
 
 bg = pygame.image.load("assets/bg.png")
@@ -65,8 +65,9 @@ def run():
                 done = True
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
-                    done = True
                     pygame.quit()
+                    print("Stopping Pygame")
                     webstop()
-                    break
-            pygame.display.flip()
+                    sys.exit()
+                    done = True
+    pygame.display.flip()
