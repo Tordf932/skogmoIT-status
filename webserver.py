@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import os, codecs, itscreen
+from bs4 import BeautifulSoup as bs
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-host_name = '192.168.1.88'  # IP Address of Raspberry Pi
+host_name = '192.168.1.232'  # IP Address of Raspberry Pi
 host_port = 80
 
 class MyServer(BaseHTTPRequestHandler):
@@ -23,7 +24,7 @@ class MyServer(BaseHTTPRequestHandler):
                 f = open(self.path[1:]).read()
                 self.send_response(200)
                 self.end_headers()
-                self.wfile.write(bytes(f, 'iso-8859-1'))
+                self.wfile.write(bytes(f, "iso-8859-1"))
             else:
                 f = "File not found"
                 self.send_error(404,f)
@@ -35,20 +36,53 @@ class MyServer(BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length).decode("iso-8859-1")
         post_data = post_data.split("=")[1]
-
-        if post_data == 'ledig':
+        soup = bs(open("index.html"), "html.parser")
+        if post_data == 'btn1':
+            search =soup.find('button', class_='button_ledig')
+            if search != None:
+                search['class'] = 'button_ledig_active'
+            search2 =soup.find('button', class_='button_mote_active')
+            if search2 != None:
+                search2['class'] = 'button_mote'
+            search3 =soup.find('button', class_='button_annet_active')
+            if search3 != None:
+                search3['class'] = 'button_annet'
+            with open("index.html", "w") as outf:
+                outf.write(str(soup))
             itscreen.ledig()
-        if post_data == 'mote':
+        if post_data == 'btn2':
+            search =soup.find('button', class_='button_ledig_active')
+            if search != None:
+                search['class'] = 'button_ledig'
+            search2 =soup.find('button', class_='button_mote')
+            if search2 != None:
+                search2['class'] = 'button_mote_active'
+            search3 =soup.find('button', class_='button_annet_active')
+            if search3 != None:
+                search3['class'] = 'button_annet'
+            with open("index.html", "w") as outf:
+                outf.write(str(soup))
             itscreen.mote()
-        if post_data == 'annet':
+        if post_data == 'btn3':
+            search =soup.find('button', class_='button_ledig_active')
+            if search != None:
+                search['class'] = 'button_ledig'
+            search2 =soup.find('button', class_='button_mote_active')
+            if search2 != None:
+                search2['class'] = 'button_mote'
+            search3 =soup.find('button', class_='button_annet')
+            if search3 != None:
+                search3['class'] = 'button_annet_active'
+            with open("index.html", "w") as outf:
+                outf.write(str(soup))
             itscreen.annet_oppdrag()
         else:
-            return
+            print("could not post")
 
         print("Status: {}".format(post_data))
         
         self._redirect('/')  # Redirect back to the root url
-        
+
 http_server = HTTPServer((host_name, host_port), MyServer)
 
 def webstart():
