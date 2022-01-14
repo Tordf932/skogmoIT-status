@@ -3,7 +3,7 @@ import os, codecs, itscreen
 from bs4 import BeautifulSoup as bs
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-host_name = '192.168.1.232'  # IP Address of Raspberry Pi
+host_name = '192.168.1.85'  # IP Address of Raspberry Pi
 host_port = 80
 
 class MyServer(BaseHTTPRequestHandler):
@@ -24,7 +24,7 @@ class MyServer(BaseHTTPRequestHandler):
                 f = open(self.path[1:]).read()
                 self.send_response(200)
                 self.end_headers()
-                self.wfile.write(bytes(f, "iso-8859-1"))
+                self.wfile.write(bytes(f, "utf-8"))
             else:
                 f = "File not found"
                 self.send_error(404,f)
@@ -34,7 +34,7 @@ class MyServer(BaseHTTPRequestHandler):
 
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length).decode("iso-8859-1")
+        post_data = self.rfile.read(content_length).decode("utf-8")
         post_data = post_data.split("=")[1]
         soup = bs(open("index.html"), "html.parser")
         if post_data == 'btn1':
@@ -80,10 +80,11 @@ class MyServer(BaseHTTPRequestHandler):
             print("could not post")
 
         print("Status: {}".format(post_data))
-        
+
         self._redirect('/')  # Redirect back to the root url
 
 http_server = HTTPServer((host_name, host_port), MyServer)
+first_start = True
 
 def webstart():
     print("Server Starts - %s:%s" % (host_name, host_port))
@@ -104,13 +105,5 @@ def webstart():
         first_start = False
     try:
         http_server.serve_forever()
-    except KeyboardInterrupt:
-        http_server.server_close()
-
-def webstop():
-    print("Server Stops - %s:%s" % (host_name, host_port))
-
-    try:
-        http_server.server_close()
     except KeyboardInterrupt:
         http_server.server_close()

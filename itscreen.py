@@ -68,7 +68,6 @@ def run():
                 if event.key == pygame.K_q:
                     pygame.quit()
                     print("Stopping Pygame")
-                    webstop()
                     sys.exit()
                     done = True
     pygame.display.flip()
