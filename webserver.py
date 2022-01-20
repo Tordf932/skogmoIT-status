@@ -37,6 +37,7 @@ class MyServer(BaseHTTPRequestHandler):
         post_data = self.rfile.read(content_length).decode("utf-8")
         post_data = post_data.split("=")[1]
         soup = bs(open("index.html"), "html.parser")
+        
         if post_data == 'btn1':
             search =soup.find('button', class_='button_ledig')
             if search != None:
@@ -47,9 +48,13 @@ class MyServer(BaseHTTPRequestHandler):
             search3 =soup.find('button', class_='button_annet_active')
             if search3 != None:
                 search3['class'] = 'button_annet'
+            search4 =soup.find('button', class_='button_opptatt_active')
+            if search4 != None:
+                search4['class'] = 'button_opptatt'
             with open("index.html", "w") as outf:
                 outf.write(str(soup))
             itscreen.ledig()
+            
         if post_data == 'btn2':
             search =soup.find('button', class_='button_ledig_active')
             if search != None:
@@ -60,9 +65,13 @@ class MyServer(BaseHTTPRequestHandler):
             search3 =soup.find('button', class_='button_annet_active')
             if search3 != None:
                 search3['class'] = 'button_annet'
+            search4 =soup.find('button', class_='button_opptatt_active')
+            if search4 != None:
+                search4['class'] = 'button_opptatt'
             with open("index.html", "w") as outf:
                 outf.write(str(soup))
             itscreen.mote()
+            
         if post_data == 'btn3':
             search =soup.find('button', class_='button_ledig_active')
             if search != None:
@@ -73,9 +82,29 @@ class MyServer(BaseHTTPRequestHandler):
             search3 =soup.find('button', class_='button_annet')
             if search3 != None:
                 search3['class'] = 'button_annet_active'
+            search4 =soup.find('button', class_='button_opptatt_active')
+            if search4 != None:
+                search4['class'] = 'button_opptatt'
             with open("index.html", "w") as outf:
                 outf.write(str(soup))
             itscreen.annet_oppdrag()
+            
+        if post_data == 'btn4':
+            search =soup.find('button', class_='button_ledig_active')
+            if search != None:
+                search['class'] = 'button_ledig'
+            search2 =soup.find('button', class_='button_mote_active')
+            if search2 != None:
+                search2['class'] = 'button_mote'
+            search3 =soup.find('button', class_='button_annet_active')
+            if search3 != None:
+                search3['class'] = 'button_annet'
+            search4 =soup.find('button', class_='button_opptatt')
+            if search4 != None:
+                search4['class'] = 'button_opptatt_active'
+            with open("index.html", "w") as outf:
+                outf.write(str(soup))
+            itscreen.opptatt()
         else:
             print("could not post")
 
@@ -100,6 +129,9 @@ def webstart():
         search3 =soup.find('button', class_='button_annet_active')
         if search3 != None:
             search3['class'] = 'button_annet'
+        search4 =soup.find('button', class_='button_opptatt_active')
+        if search4 != None:
+            search4['class'] = 'button_opptatt'
         with open("index.html", "w") as outf:
             outf.write(str(soup))
         first_start = False

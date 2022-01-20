@@ -65,11 +65,17 @@ button {
 .button_mote_active:hover {background-color: #C22B2B}
 
 .button_annet_active {
+    background-color: #FF0000;
+}
+
+.button_annet_active:hover {background-color: #C22B2B}
+
+.button_opptatt_active {
     background-color: #FFFB00;
     text-shadow: -1px 0 1px black, 0 1px 1px black, 1px 0 1px black, 0 -1px 1px black;
 }
 
-.button_annet_active:hover {background-color: #CCC925}
+.button_opptatt_active:hover {background-color: #CCC925}
 
 .area{
     background: #f5fbff;  

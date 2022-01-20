@@ -1,5 +1,4 @@
 import pygame, sys
-from webserver import webstop
 
 pygame.init()
 pygame.font.init()
@@ -8,7 +7,7 @@ pygame.mouse.set_visible(False)
 sw = 1920
 sh = 1080
 
-screen = pygame.display.set_mode((sw, sh), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((sw, sh))#, pygame.FULLSCREEN)
 clock = pygame.time.Clock()
 
 bg = pygame.image.load("assets/bg.png")
@@ -32,6 +31,11 @@ text_rect32 = text_annet2.get_rect(center=(sw/2, sh/1.6))
 text_annet3 = font2.render("ELLER RING/SEND MELDING PÅ TEAMS", False, (255,255,255))
 text_rect33 = text_annet3.get_rect(center=(sw/2, sh/1.4))
 
+text_opptatt = font1.render("OPPTATT", False, (255,255,255))
+text_rect4 = text_opptatt.get_rect(center=(sw/2, sh/2.1))
+text_opptatt2 = font2.render("VENT PÅ UTSIDEN ELLER KOM TILBAKE SENERE", False, (255,255,255))
+text_rect42 = text_opptatt2.get_rect(center=(sw/2, sh/1.6))
+
 def ledig():
     screen.blit(bg, (0,0))
     screen.blit(text_ledig, text_rect1)
@@ -54,6 +58,14 @@ def annet_oppdrag():
     screen.blit(text_annet, text_rect3)
     screen.blit(text_annet2, text_rect32)
     screen.blit(text_annet3, text_rect33)
+    color = (255,0,0)
+    pygame.draw.rect(screen, color, pygame.Rect(0,0,sw,sh), 100)
+    pygame.display.update()
+    
+def opptatt():
+    screen.blit(bg, (0,0))
+    screen.blit(text_opptatt, text_rect4)
+    screen.blit(text_opptatt2, text_rect42)
     color = (255,255,0)
     pygame.draw.rect(screen, color, pygame.Rect(0,0,sw,sh), 100)
     pygame.display.update()
