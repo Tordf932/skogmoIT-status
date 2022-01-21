@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup as bs
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 host_name = '192.168.1.85'  # IP Address of Raspberry Pi
-host_port = 80
+host_port = 8000
 
 class MyServer(BaseHTTPRequestHandler):
 
@@ -139,3 +139,5 @@ def webstart():
         http_server.serve_forever()
     except KeyboardInterrupt:
         http_server.server_close()
+
+webstart()

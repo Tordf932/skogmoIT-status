@@ -7,10 +7,10 @@ pygame.mouse.set_visible(False)
 sw = 1920
 sh = 1080
 
-screen = pygame.display.set_mode((sw, sh))#, pygame.FULLSCREEN)
+screen = pygame.display.set_mode((sw, sh), pygame.FULLSCREEN)
 clock = pygame.time.Clock()
 
-bg = pygame.image.load("assets/bg.png")
+bg = pygame.image.load("/home/pi/skogmoIT-status-main/assets/bg.png")
 font1 = pygame.font.SysFont("None", 300)
 font2 = pygame.font.SysFont("None", 100)
 
